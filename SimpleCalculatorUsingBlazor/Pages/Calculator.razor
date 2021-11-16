@@ -1,0 +1,76 @@
+﻿@page "/calculator"
+
+<h1>Simple Calculator Using Blazor</h1>
+<hr />
+<div>
+    <div class="row">
+        <div class="col-sm-3">
+            <label class="control-label">First Number</label>
+        </div>
+        <div class="col-sm-4">
+            <input class="form-control" type="text" placeholder="Enter First Number" @bind="firstNumber" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-3">
+            <label class="control-label">Second Number</label>
+        </div>
+        <div class="col-sm-4">
+            <input class="form-control" type="text" placeholder="Enter Second Number" @bind="secondNumber" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-3">
+            <label class="control-label">Result</label>
+        </div>
+        <div class="col-sm-4">
+            <input readonly class="form-control" @bind="finalResult" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <button @onclick="AddNumbers" class="btn btn-primary">Add (+)</button>
+        </div>
+        <div class="col-md-3">
+            <button @onclick="SubtractNumbers" class="btn btn-warning">Subtract (−)</button>
+        </div>
+        <div class="col-md-3">
+            <button @onclick="MultiplyNumbers" class="btn btn-success">Multiply (X)</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-info" @onclick="DivideNumbers">Divide (/)</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    double firstNumber { get; set; }
+    double secondNumber { get; set; }
+    string finalResult { get; set; }
+    void AddNumbers()
+    {
+        finalResult = (firstNumber + secondNumber).ToString();
+    }
+    void SubtractNumbers()
+    {
+        finalResult = (firstNumber - secondNumber).ToString();
+    }
+    void MultiplyNumbers()
+    {
+        finalResult = (firstNumber * secondNumber).ToString();
+    }
+    void DivideNumbers()
+    {
+        if (secondNumber != 0)
+        {
+            finalResult = (firstNumber / secondNumber).ToString();
+        }
+        else
+        {
+            finalResult = "Cannot Divide by Zero";
+        }
+    }
+}
